@@ -12,3 +12,60 @@ body{
 	font-size: 16px;
 	font-family: 'Kumbh Sans', sans-serif;
 }
+.header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.header__menu{
+	margin-right: 10px;
+}
+.menu{
+	width: 200px;
+	height: 100vh;
+	position: fixed;
+	top:0;
+	background-color: var(--White);
+	transform: translateX(-105%);
+	transition: transform 0.5s;
+}
+.menu--active{
+	transform: translateX(-5%);
+}
+.img__close{
+	position: absolute;
+	top:20px;
+	left: 20px;;
+}
+.list{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: 30%;
+	list-style: none;
+	padding-left: 10px;
+	margin-top: 4em;
+}
+.menu__link{
+	text-decoration: none;
+	color: var(--Very-dark-blue);
+	font-weight: 700;
+	font-size: 1.2rem;
+}
+.lightbox__img{
+	max-width: 110%;
+	margin-left: -10px;
+}
+.cart{
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+.img__avatar{
+	max-width: 25%;
+}
+
+
+.main{
+	margin-top: 25px;
+}

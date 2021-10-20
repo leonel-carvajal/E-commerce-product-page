@@ -13,14 +13,17 @@
 <body>
   <main>
     <header class="header">
-      <img src="images/icon-menu.svg" alt="icon-menu" class="header__menu">
-      <img src="images/logo.svg" alt="Logo" class="header__logo">
+      <div class="images">
+        <img src="images/icon-menu.svg" alt="icon-menu" class="header__menu" id="menu__img">
+        <img src="images/logo.svg" alt="Logo" class="header__logo">
+      </div>
       <div class="cart">
         <img src="images/icon-cart.svg" alt="icon-cart" class="img__cart">
-        <img src="images/image-avatar.png" alt="Avatar" class="avatar">
+        <img src="images/image-avatar.png" alt="Avatar" class="img__avatar">
       </div>
-      <nav>
-        <ul class="menu">
+      <nav class="menu" id="menu">
+        <img src="images/icon-close.svg" alt="" class="img__close" id="menu__close">
+        <ul class="list">
           <li class="menu__item"><a href="#" class="menu__link">Collections</a></li>
           <li class="menu__item"><a href="#" class="menu__link">Man</a></li>
           <li class="menu__item"><a href="#" class="menu__link">Women</a></li>
@@ -56,5 +59,6 @@
       </article>
     </div>
   </main>
+  <script src="js/scrtip-dist.js"></script>
 </body>
 </html>
