@@ -18,8 +18,29 @@
         <img src="images/logo.svg" alt="Logo" class="header__logo">
       </div>
       <div class="cart">
-        <img src="images/icon-cart.svg" alt="icon-cart" class="img__cart">
+        <div class="box__cart">
+          <span class="cart__added">3</span>
+          <img src="images/icon-cart-2.svg" alt="icon-cart" class="img__cart" id="cart">
+        </div>
         <img src="images/image-avatar.png" alt="Avatar" class="img__avatar">
+        <div class="basket__modal">
+          <h2 class="basket__title">Cart</h2>
+          <div class="basket__content">
+            <div class="product">
+              <img src="images/image-product-1-thumbnail.jpg" alt="image-product-1-thumbnail" class="basket__thumbails">
+              <div class="description">
+                <p class="description__name">Autum limited edition</p>
+                <p class="description__prices">
+                  <span class="description__price">$125.00</span>
+                  <span class="description__number">x3</span>
+                  <span class="description__total">$375.00</span>
+                </p>
+              </div>
+              <img src="images/icon-delete.svg" alt="icon-delete" class="baske__delete">
+            </div>
+            <button class="button">Checkout</button>
+          </div>
+        </div>
       </div>
       <nav class="menu" id="menu">
         <img src="images/icon-close.svg" alt="" class="img__close" id="menu__close">
@@ -55,7 +76,7 @@
             <p class="picker__number">0</p>
             <img src="images/icon-plus.svg" alt="icon-plus" class="picker__img">
           </div>
-          <button class="buttonCart">Add to Cart</button>
+          <button class="button button--cart">Add to Cart</button>
       </article>
     </div>
   </main>

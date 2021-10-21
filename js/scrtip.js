@@ -1,8 +1,10 @@
 const menuImg = document.getElementById('menu__img');
 const menu = document.getElementById('menu');
 const menuClose = document.getElementById('menu__close');
-const arrowPrevious = document.querySelector('.arrow__left')
-const arrowNext = document.querySelector('.arrow__right')
+const arrowPrevious = document.querySelector('.arrow__left');
+const arrowNext = document.querySelector('.arrow__right');
+const cart = document.getElementById('cart');
+const basketModal = document.querySelector('.basket__modal');
 
 menuImg.addEventListener('click', () => {
 	if (!menu.classList.contains('menu--active')) {
@@ -15,9 +17,13 @@ menuClose.addEventListener('click', () => {
 	}
 });
 
-arrowPrevious.addEventListener('click',(e)=>{
-	console.log(e.target)
-})
-arrowNext.addEventListener('click',(e)=>{
-	console.log(e.target)
-})
+arrowPrevious.addEventListener('click', (e) => {
+	console.log(e.target);
+});
+arrowNext.addEventListener('click', (e) => {
+	console.log(e.target);
+});
+
+cart.addEventListener('click', () => {
+	basketModal.classList.toggle('basket__modal--active');
+});
