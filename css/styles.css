@@ -17,8 +17,33 @@ body{
 	justify-content: space-between;
 	align-items: center;
 }
+@media screen and (min-width:1024px) {
+	.main__box{
+		padding: .8em;
+	}
+	.header{
+		height: 75px;
+		border-bottom: 3px solid var(--Grayish-blue);
+	}
+}
 .header__menu{
 	margin-right: 10px;
+}
+@media screen and (min-width:1024px) {
+	.header__menu{
+		display: none;
+	}
+	.images{
+		margin-left: 60px;
+		margin-bottom: 25px;
+	}
+	.cart{
+		margin-bottom: 25px;
+	}
+	.box__cart{
+		cursor: pointer;
+	}
+
 }
 .menu{
 	width: 200px;
@@ -30,13 +55,29 @@ body{
 	transform: translateX(-105%);
 	transition: transform 0.5s;
 }
+
 .menu--active{
 	transform: translateX(-5%);
+}
+@media screen and (min-width:1024px) {
+	.menu{
+		width: auto;
+		height: auto;
+		position:relative;
+		background: transparent;
+		margin-left: -20%;
+		transform: translateX(0%) translateY(-22%);
+	}
 }
 .img__close{
 	position: absolute;
 	top:20px;
 	left: 20px;;
+}
+@media screen and (min-width:1024px) {
+	.img__close{
+		display: none;
+	}
 }
 .list{
 	display: flex;
@@ -47,11 +88,28 @@ body{
 	padding-left: 10px;
 	margin-top: 4em;
 }
+@media screen and (min-width:1024px) {
+	.list{
+		flex-direction: row;
+	}
+}
+
 .menu__link{
 	text-decoration: none;
 	color: var(--Very-dark-blue);
 	font-weight: 700;
 	font-size: 1.2rem;
+}
+@media screen and (min-width:1024px) {
+	.menu__item{
+		margin-right: 20px;
+		margin-bottom: -20px;
+		padding-bottom: 2.6em;
+		border-bottom: 3px solid transparent;
+	}
+	.menu__item:hover{
+		border-bottom: 3px solid var(--Orange);
+	}
 }
 
 .cart{
@@ -59,8 +117,26 @@ body{
 	align-items: center;
 	justify-content: space-evenly;
 }
+@media screen and (min-width:1024px) {
+	.cart{
+		order: 2;
+	}
+}
 .img__avatar{
 	max-width: 25%;
+}
+@media screen and (min-width:1024px) {
+	.img__avatar{
+		max-width: 35%;
+		border-radius: 50%;
+		transition: outline 0.3s;
+		outline: 2px solid transparent;
+	}
+	.img__avatar:hover{
+		cursor: pointer;
+		outline: 2px solid var(--Orange);
+	}
+	
 }
 .box__cart{
 	position: relative;
@@ -83,7 +159,19 @@ body{
 
 .lightbox{
 	z-index: 1;
+	transition: opacity 0.6s;
+	opacity: 1;
 }
+.lightbox--active{
+	opacity: 0.5;
+}
+@media screen and (min-width:1024px) {
+	.lightbox{
+		display: flex;
+		flex-direction: column;
+	}
+}
+
 
 .arrow__left,
 .arrow__right{
@@ -101,9 +189,51 @@ body{
 .arrow__left{
 	left: 29px;
 }
+@media screen and (min-width:1024px) {
+	.arrow__left,
+	.arrow__right{
+		cursor: pointer;
+	}
+	.arrow__right{
+		right: 60%;
+	}
+	.arrow__left{
+		left: 150px;
+	}
+}
 .lightbox__img{
 	max-width: 110%;
 	margin-left: -10px;
+}
+.lightbox__thumbails{
+	display: none;
+}
+@media screen and (min-width:1024px) {
+	.lightbox{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.lightbox__img{
+		max-width: 45%;
+		border-radius: 10px;
+		cursor: pointer;
+	}
+	.lightbox__thumbails{
+		display: flex;
+		justify-content: space-evenly;
+		margin-top: 25px;
+	}
+	.img__thumbnail--active{
+		outline: 3px solid var(--Orange);
+		opacity: 0.4;
+	}
+	
+	.img__thumbanil{
+		max-width: 15%;
+		border-radius: 10px;
+		cursor: pointer;
+	}
 }
 .main{
 	margin-top: 25px;
@@ -129,6 +259,21 @@ body{
 	margin-left: auto;
 	color: var(--Dark-grayish-blue);
 }
+@media screen and (min-width:1024px) {
+	.main{
+		display: grid;
+		grid-template-columns: repeat(2,1fr);
+		grid-template-rows: 1;
+	}
+	.main__subtitle{
+		margin-left: 25px;
+		width: 70%;
+	}
+	.main__text{
+		width: 70%;
+		margin-left: 25px;
+	}
+}
 .price{
 	display: flex;
 	align-items: center;
@@ -136,7 +281,11 @@ body{
 	margin-left: auto;
 	margin-right: auto;
 }
-
+@media screen and (min-width:1024px) {
+	.price{
+		flex-wrap: wrap;
+	}
+}
 .price__total{
 	font-size: 1.5rem;
 	font-weight: 700;
@@ -156,6 +305,17 @@ body{
 	color:var(--Grayish-blue);
 	text-decoration: line-through;
 	margin-left: 85px;
+}
+@media screen and (min-width:1024px) {
+	.box-content{
+		display: flex;
+		align-items: center;
+	}
+	.price__original{
+		width: 80%;
+		margin-left: 0;
+		margin-top: 0;
+	}
 }
 .picker{
 	width: 90%;
@@ -190,6 +350,28 @@ body{
 	background-repeat: no-repeat;
 	background-position: 75px 12px;
 	background-size: 20px;
+}
+@media screen and (min-width:1024px) {
+	.picker{
+		width: 20%;
+	}
+	.button{
+		width: 40%;
+		margin-top: 0;
+		cursor: pointer;
+	}
+	.button--cart{
+		background-position: 40px 12px;
+		box-shadow: 0;
+		transition: box-shadow 0.3s, background-color 0.3s;
+	}
+	.button--cart:hover{
+		background-color: hsla(26, 100%, 55%,0.7);
+		box-shadow: 0 8px 14px 0 hsla(26, 100%, 55%,0.7);
+	}
+	.picker__img{
+		cursor: pointer;
+	}
 }
 .basket__modal{
 	position: absolute;
