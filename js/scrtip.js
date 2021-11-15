@@ -7,6 +7,8 @@ const pickerPlus = document.getElementById('picker__plus');
 const addToCart = document.getElementById('addCart');
 const arrowPreviousModal = document.querySelector('.far-left');
 const arrowNextModal = document.querySelector('.far-right');
+const arrowLeft = document.querySelector('.arrow__left');
+const arrowRight = document.querySelector('.arrow__right');
 const basketModal = document.querySelector('.basket__modal');
 const boxCart = document.querySelector('.box__cart');
 const imgLightBox = document.querySelector('.lightbox__img');
@@ -22,7 +24,7 @@ const amountBasketNumber = document.querySelector('.cart__added');
 let index = 0;
 let indexModal = 0;
 let countBasketNumber = 0;
-let arrayAmount = []
+let arrayAmount = [];
 
 const arrayImages = [
 	'image-product-1.jpg',
@@ -30,6 +32,8 @@ const arrayImages = [
 	'image-product-3.jpg',
 	'image-product-4.jpg',
 ];
+
+
 
 const initialImage = (index) => {
 	imgLightBox.src = `images/${arrayImages[index]}`;
@@ -46,7 +50,7 @@ const contentBasketEmpty = () => {
 };
 const contentBasketFill = () => {
 	let total = 0;
-	let sum = arrayAmount.reduce((acc,item)=>acc+item,0)
+	let sum = arrayAmount.reduce((acc, item) => acc + item, 0);
 	const fragment = document.createDocumentFragment();
 	const divProduct = document.createElement('div');
 	const imgProduct = document.createElement('img');
@@ -95,12 +99,10 @@ const contentBasketFill = () => {
 	iconDelete.addEventListener('click', () => {
 		basketContent.textContent = '';
 		amountBasketNumber.textContent = 0;
-		arrayAmount = []
+		arrayAmount = [];
 		contentBasketEmpty();
 	});
 };
-
-
 
 const activeImg = (e) => {
 	imgLightBox.classList.add('lightbox__img--animation');
@@ -113,33 +115,48 @@ const activeImg = (e) => {
 	e.target.classList.add('img__thumbnail--active');
 };
 
-const activeImgModal = (e) => {
+const activeImgModal = (img) => {
+	initialImageModal(Number(img.dataset.index));
 	modalImg.classList.add('lightbox__img--animation');
-	initialImageModal(Number(e.target.dataset.index));
-	imagesThumbnailModal.forEach((img) => {
-		if (img.classList.contains('img__thumbnail--activeModal')) {
-			img.classList.remove('img__thumbnail--activeModal');
-		}
-	});
-	e.target.classList.add('img__thumbnail--activeModal');
+	if (!img.classList.contains('img__thumbnail--activeModal')) {
+		img.classList.add('img__thumbnail--activeModal');
+	}
 };
 
 const changeImage = (arrow) => {
-	if (arrow === 'back') {
-		indexModal--;
-		if (indexModal < 0) {
-			indexModal = arrayImages.length - 1;
-		}
-	}
 	if (arrow === 'forward') {
-		indexModal++;
-		if (indexModal >= arrayImages.length) {
-			indexModal = 0;
+		index++;
+		if (index >= arrayImages.length) {
+			index = 0;
+			imgLightBox.classList.add('lightbox__img--start')
 		}
 	}
-	initialImageModal(indexModal);
+
+	if (arrow === 'back') {
+		index--;
+		if (index < 0) {
+			index = arrayImages.length - 1;
+		}
+	}
+	
+	initialImageModal(index)
 	modalImg.classList.add('lightbox__img--animation');
 };
+
+const changeImageNext = ()=>{
+	indexModal++
+	if(indexModal>=arrayImages.length){
+		indexModal = 0
+	}
+	initialImageModal(indexModal)
+}
+const changeImagePreviuos = ()=>{
+	indexModal--
+	if(indexModal<0){
+		indexModal = arrayImages.length -1
+	}
+	initialImageModal(indexModal)
+}
 
 const addtoBasket = () => {
 	basketContent.textContent = '';
@@ -149,6 +166,7 @@ const addtoBasket = () => {
 		contentBasketFill();
 	}
 };
+
 pickerMinus.addEventListener('click', () => {
 	countBasketNumber = countBasketNumber - 1;
 	if (countBasketNumber < 0) {
@@ -173,12 +191,17 @@ menuClose.addEventListener('click', () => {
 	}
 });
 
-arrowPreviousModal.addEventListener('click', () => {
-	changeImage('back');
-});
+arrowPreviousModal.addEventListener('click', changeImagePreviuos);
 
-arrowNextModal.addEventListener('click', () => {
+arrowNextModal.addEventListener('click',changeImageNext);
+
+arrowLeft.addEventListener('click', () => {
+	changeImage('back');
+	initialImage(index);
+});
+arrowRight.addEventListener('click', () => {
 	changeImage('forward');
+	initialImage(index);
 });
 
 cart.addEventListener('click', () => {
@@ -192,14 +215,18 @@ imagesThumbnail.forEach((img) => {
 });
 
 imagesThumbnailModal.forEach((img) => {
-	img.addEventListener('click', (e) => {
-		activeImgModal(e);
+	img.addEventListener('click', () => {
+		Object.values(imagesThumbnailModal).map((item) =>
+			item.classList.remove('img__thumbnail--activeModal')
+		);
+		activeImgModal(img);
 	});
 });
 
 imgLightBox.addEventListener('animationend', () => {
 	imgLightBox.classList.remove('lightbox__img--animation');
 });
+
 modalImg.addEventListener('animationend', () =>
 	modalImg.classList.remove('lightbox__img--animation')
 );
@@ -207,8 +234,7 @@ modalImg.addEventListener('animationend', () =>
 imgLightBox.addEventListener('click', (e) => {
 	let routeImg = e.target.src.slice(29);
 	let actualImg = arrayImages.indexOf(routeImg);
-	indexModal = actualImg;
-	initialImageModal(indexModal);
+	initialImageModal(actualImg);
 	lightboxModal.classList.add('lightbox__modal--active');
 });
 
@@ -220,18 +246,21 @@ modalIconClose.addEventListener('click', () => {
 });
 
 addToCart.addEventListener('click', () => {
-	arrayAmount.unshift(countBasketNumber)
+	arrayAmount.unshift(countBasketNumber);
 	addtoBasket();
 	countBasketNumber = 0;
 	pickerNumber.textContent = 0;
-	amountBasketNumber.textContent = arrayAmount.reduce((acc,item)=>acc+item,0)
+	amountBasketNumber.textContent = arrayAmount.reduce(
+		(acc, item) => acc + item,
+		0
+	);
 });
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
 	initialImage(index);
 	initialImageModal(indexModal);
 	contentBasketEmpty();
-	localStorage.removeItem('amount')
+	localStorage.removeItem('amount');
 	pickerNumber.textContent = countBasketNumber;
 	amountBasketNumber.textContent = countBasketNumber;
 });
